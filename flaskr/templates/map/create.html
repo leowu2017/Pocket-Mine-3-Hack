@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1>{% block title %}New Map{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<form method="post">
+		{{ form.csrf_token }}
+		{{ form.title.label }}
+		{{ form.title(id='title', value=request.form['title']) }}
+	
+		<div class='two_column'>
+			<div>
+				{{ form.width.label }}
+				{{ form.width(id='width', value=(request.form['width'] or 9)) }}
+			</div>
+			<div>
+				{{ form.height.label }}
+				{{ form.height(id='height', value=(request.form['height'] or 200)) }}
+			</div>
+		</div>
+
+		<input type="submit" class="min-width" value="Save and Edit map">
+	</form>
+{% endblock %}

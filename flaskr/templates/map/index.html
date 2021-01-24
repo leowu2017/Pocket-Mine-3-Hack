@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Lists{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	{% for map in maps %}
+		<article class="map">
+			<header>
+				<div>
+					<a href="{{ url_for('map.view', id=map['id']) }}"><h1>{{ map.title }}</h1></a>
+					<span class="size">{{ map.width }} x {{ map.height }}</span>
+					<span class="about">on {{ map.created.strftime('%Y-%m-%d') }}</span>
+				</div>
+			</header>
+			
+		</article>
+		{% if not loop.last %}
+			<hr>
+		{% endif %}
+	{% endfor %}
+{% endblock %}

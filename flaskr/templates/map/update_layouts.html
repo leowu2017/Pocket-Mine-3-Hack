@@ -1,0 +1,51 @@
+<style>
+	.map-block {
+		width:{{ cellSize }}px;
+		height:{{ cellSize }}px;
+	}
+	picture::after {
+		position: absolute;
+		bottom: 0;
+		left: {{ cellSize + 5 }}px;
+		content: attr(data-after-content);
+	}
+</style>
+
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1>{% block title %}{{ map.title }}{% endblock %}<label><span id='width'>{{ map.width }}</span> x <span id='height'>{{ map.height }}</span></label></h1>
+	<a class="action" href="{{ url_for('map.view', id=map.id) }}">View map</a>
+	{% if g.user.id %}
+		<a class="action" href="{{ url_for('map.update_properties', id=map.id) }}">Edit map properties</a>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+<div id="map-data" class="hide">
+	{% for mapBlock in map.mapBlocks %}
+		<img src="{{ url_for('static', filename='images/' + mapBlock.block.file) }}" data-id="{{ mapBlock.id }}" data-x="{{ mapBlock.x }}" data-y="{{ mapBlock.y }}" />
+	{% endfor %}
+</div>
+<div class='outer-container align-center'>
+	<div id="map" class="map-container-left" style="grid-template-columns: repeat({{ map.width }}, 1fr);">
+		<template v-for="(row, rowIdx) in map">
+			<template v-for="(column, columnIdx) in row">
+				<rowinfo :row="rowIdx" :column="columnIdx">
+					<img v-if="column" class='map-block pointer' :src="column.src" @click='setTargetBlock' :data-id='column.id' />
+					<img v-else class='map-block pointer' src="{{ url_for('static', filename='images/'+question) }}" @click='setTargetBlock' :data-x="columnIdx" :data-y="rowIdx" >	
+				</rowinfo>
+			</template>
+		</template>
+	</div>
+	<div id="block" class='block-container' data-csrf="{{ csrf_token() }}">
+		<div>
+			{% for block in blocks %}
+				<img src="{{ url_for('static', filename='images/' + block.file) }}" class='block pointer' @click='selectBlock' data-id="{{ block.id }}" />
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block jsFiles %}<script src="{{ url_for('static', filename='update_layouts.js') }}"></script>{% endblock %}

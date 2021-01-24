@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ map.title }}{% endblock %}
+
+{% block header %}
+	<h1 id='header'>{% raw %}{{ title }}{% endraw %}<label>{% raw %}{{ width }}{% endraw %} x {% raw %}{{ height }}{% endraw %}</label></h1>
+{% endblock %}
+
+{% block content %}
+	<form id='form' method="post">
+		{{ form.csrf_token }}
+		{{ form.title.label }}
+		{{ form.title(id='title', value=(request.form['title'] or map.title), **{'v-model':'title'}) }}
+		<div class='two_column'>
+			<div>
+				{{ form.width.label }}
+				{{ form.width(id='width', value=(request.form['width'] or map.width), **{'v-model':'width'}) }}
+			</div>
+			<div>
+				{{ form.height.label }}
+				{{ form.height(id='height', value=(request.form['height'] or map.height), **{'v-model':'height'}) }}
+			</div>
+		</div>
+		<div>
+			<a href="{{ url_for('map.view', id=map.id) }}"><button class="min-width">Cancel</button></a>
+			<input class="min-width" type="submit" value="Save">
+		</div>
+	</form>
+	<hr>
+	<form action="{{ url_for('map.delete', id=map.id) }}" method="post">
+		{{ form.csrf_token }}
+		<input class="danger min-width" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+	</form>
+{% endblock %}
+
+{% block jsFiles %}<script src="{{ url_for('static', filename='update_properties.js') }}"></script>{% endblock %}

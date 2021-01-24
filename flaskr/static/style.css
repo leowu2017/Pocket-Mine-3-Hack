@@ -1,0 +1,37 @@
+body { max-width: 960px; margin: 0 auto; background: white; }
+h1 { font-family: serif; color: #377ba8; margin: 1rem 0; }
+a { color: #377ba8; }
+hr { border: none; border-top: 1px solid lightgray; }
+nav { background: lightgray; display: flex; align-items: center; padding: 0 0.5rem; }
+nav h1 { flex: auto; margin: 0; }
+nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
+nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }
+nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
+.content { padding: 0 1rem 1rem; }
+.content > header { border-bottom: 1px solid lightgray; display: flex; align-items: flex-end; }
+.content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
+.content > header h1 > label { font-size: 0.7em; padding-left: 1em; color: slategray; }
+.flash { margin: 1em 0; padding: 1em; background: #cae6f6; border: 1px solid #377ba8; }
+.map > header { display: flex; align-items: flex-end; font-size: 0.85em; }
+.map > header > div:first-of-type { flex: auto; }
+.map > header h1 { font-size: 1.5em; margin-bottom: 0; }
+.map .size { color: darkcyan; padding-right: 2em; }
+.map .about { color: slategray; font-style: italic; }
+.content:last-child { margin-bottom: 0; }
+.content form { margin: 1em 0; display: flex; flex-direction: column; }
+.content form > .two_column { display: grid; grid-template-columns: 1fr 1fr; }
+.content label { font-weight: bold; margin-bottom: 0.5em; }
+.content input { margin-bottom: 1em; }
+input.danger { align-self: start; color: #cc2f2e; }
+.min-width { min-width: 10em; align-self: start; }
+.align-center { position: relative; margin-left: auto; margin-right: auto; }
+.map-container {  display: grid; width: 400px; }
+.map-container-left {  display: inline-grid; width: 400px; }
+.outer-container { width: 800px; }
+.block-container { width: 300px; position: absolute; left: 500px; top:0; height: 100%; }
+.block-container > div { width: 100%; position: sticky; top: 0; display: inline-grid; grid-template-columns: repeat(6, 1fr); }
+.block { width: 50px; height: 50px; }
+.hide { display: none; }
+.pointer { cursor: pointer; }
+picture { position: relative; }
+.selected { border: 2px solid red; box-sizing: border-box; }

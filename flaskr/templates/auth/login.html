@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1>{% block title %}Log In{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<form method="post">
+		{{ form.csrf_token }}
+		{{ form.username.label }}
+		{{ form.username(id='username', value=request.form['username']) }}
+		{{ form.password.label }}
+		{{ form.password(id='password', value=request.form['password']) }}
+		<input type="submit" class='min-width' value="Log In">
+	</form>
+{% endblock %}
