@@ -12,7 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from flaskr.models.auth import User
 from flaskr.models.map import Block, Map, MapBlock
-from .shared import db, csrf
+from .shared import db, migrate, csrf
 
 import wtforms_json
 
@@ -45,13 +45,21 @@ def init_db():
 def init_db_command():
 	"""Clear the existing data and create new tables."""
 	init_db()
-	insert_db_data()
 	click.echo('Initialized the database.')
+
+@click.command('load_default')
+@with_appcontext
+def load_default():
+	"""Add default data to database."""
+	insert_db_data()
+	click.echo('Default data is saved.')
 	
 def init_app(app):
 	app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../instance/flaskr.sqlite'
 	app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 	db.init_app(app)
+	migrate.init_app(app, db)
 	csrf.init_app(app)
 	wtforms_json.init()
 	app.cli.add_command(init_db_command)
+	app.cli.add_command(load_default)
