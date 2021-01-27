@@ -11,7 +11,7 @@ from wtforms.validators import DataRequired, NumberRange
 from wtforms import Form
 from wtforms.fields import IntegerField
 
-from flaskr.shared import db, getQeustion
+from flaskr.shared import db
 from flaskr.models.map import Map, Block, MapBlock
 
 bp = Blueprint('map', __name__)
@@ -33,6 +33,10 @@ def get_map(id):
 		abort(404, "Map doesn't exist.")
 
 	return map
+
+def getQeustion():
+	question = Block.query.filter_by(file='question.jpg').first()
+	return question.file if question else ''
 
 @bp.route('/')
 def index():

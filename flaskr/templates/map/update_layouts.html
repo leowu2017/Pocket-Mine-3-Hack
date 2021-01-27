@@ -33,7 +33,7 @@
 			<template v-for="(column, columnIdx) in row">
 				<rowinfo :row="rowIdx" :column="columnIdx">
 					<img v-if="column" class='map-block pointer' :src="column.src" @click='setTargetBlock' :data-id='column.id' />
-					<img v-else class='map-block pointer' src="{{ url_for('static', filename='images/'+question) }}" @click='setTargetBlock' :data-x="columnIdx" :data-y="rowIdx" >	
+					<img v-else class='map-block pointer' alt='Empty' src="{{ url_for('static', filename='images/'+question) }}" @click='setTargetBlock' :data-x="columnIdx" :data-y="rowIdx" >	
 				</rowinfo>
 			</template>
 		</template>

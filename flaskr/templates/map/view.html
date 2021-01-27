@@ -31,7 +31,7 @@
 			<template v-for="(column, columnIdx) in row">
 				<rowinfo :row="rowIdx" :column="columnIdx">
 					<img v-if="column" class='map-block' :src="column.src" />
-					<img v-else class='map-block' src="{{ url_for('static', filename='images/'+question) }}">	
+					<img v-else class='map-block' alt='Empty' src="{{ url_for('static', filename='images/'+question) }}">	
 				</rowinfo>
 			</template>
 		</template>
