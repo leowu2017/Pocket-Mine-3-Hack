@@ -6,6 +6,7 @@ A website based on Flask and Vue which provides tools of the game, Pocket Mine 3
 * [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/)
 * [Flask-Migrate](https://flask-migrate.readthedocs.io/)
 * [Flask-WTF](https://flask-wtf.readthedocs.io/)
+* [psycopg2](https://pypi.org/project/psycopg2/)
 
 ## Frontend Framework
 * [Vue.js](https://vuejs.org/)

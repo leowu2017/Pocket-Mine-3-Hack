@@ -55,8 +55,10 @@ def load_default():
 	click.echo('Default data is saved.')
 	
 def init_app(app):
-	app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../instance/flaskr.sqlite'
+	# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../instance/flaskr.sqlite'
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:0000@localhost:5432/pm3'
 	app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+	app.config['SECRET_KEY'] = b'_5#y2L"F4Q8z\n\xec]/'
 	db.init_app(app)
 	migrate.init_app(app, db)
 	csrf.init_app(app)
